@@ -8,6 +8,9 @@ RUN apt-get install -y apt-transport-https
 
 # Copy the sshd_config file to the /etc/ssh/ directory
 COPY ./ssh/sshd_config /etc/ssh/
+COPY ./root/.zshrc /root/.zshrc
+COPY ./root/.ssh/id_rsa /root/.ssh/id_rsa
+COPY ./root/.ssh/config /root/.ssh/config
 COPY ./supervisor/supervisor.conf /etc/supervisor/conf.d/
 
 RUN ssh-keygen -A
@@ -23,7 +26,7 @@ RUN sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-/root/.oh-my-zsh/custom}/themes/powerlevel10k
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-/root/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-/root/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-COPY ./root/.zshrc /root/.zshrc
+
 # Install Azure CLI
 # RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
