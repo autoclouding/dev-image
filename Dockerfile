@@ -8,9 +8,7 @@ RUN apt-get install -y apt-transport-https
 
 # Copy the sshd_config file to the /etc/ssh/ directory
 COPY ./ssh/sshd_config /etc/ssh/
-COPY ./root/.zshrc /root/.zshrc
-COPY ./root/.ssh/id_rsa /root/.ssh/id_rsa
-COPY ./root/.ssh/config /root/.ssh/config
+COPY ./root/* /root
 COPY ./supervisor/supervisor.conf /etc/supervisor/conf.d/
 
 RUN ssh-keygen -A
