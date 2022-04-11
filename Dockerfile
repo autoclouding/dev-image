@@ -41,7 +41,7 @@ RUN (curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash - ) ; echo 
 RUN apt install -y nodejs
 
 # Open port 2222 for SSH access
-EXPOSE 80 443 2222 3000 3333 8001 8080
+EXPOSE 80 443 2222 3000 3333 8001 8080 4200
 WORKDIR /opt/app
 # Copy local angular/nest code to the container
 # COPY . .
