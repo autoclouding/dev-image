@@ -38,8 +38,8 @@ RUN (mkdir dotnet && cd dotnet && tar xzvf /tmp/dotnet.tar.gz && cd .. && mv dot
 RUN echo "export PATH=\"$PATH:/usr/share/dotnet\"" >> /root/.bashrc
 
 # Install NodeJS 17
-RUN (curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash - ) ; echo "Success"
-RUN apt install -y nodejs
+RUN (curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - ) ; echo "Success"
+RUN apt install -y nodejs npm
 
 # Open port 2222 for SSH access
 EXPOSE 80 443 2222 3000 3333 8001 8080 4200
