@@ -1,10 +1,10 @@
-FROM ubuntu:22.04
+FROM ubuntu:21.04
 
 # Install SSH and SUPERVISOR
 RUN apt update
 RUN apt install -y openssh-server
 RUN apt install -y supervisor
-RUN apt-get install -y apt-transport-https
+RUN apt install -y apt-transport-https
 
 # Copy the sshd_config file to the /etc/ssh/ directory
 COPY ./ssh/sshd_config /etc/ssh/
@@ -38,8 +38,10 @@ RUN (mkdir dotnet && cd dotnet && tar xzvf /tmp/dotnet.tar.gz && cd .. && mv dot
 RUN echo "export PATH=\"$PATH:/usr/share/dotnet\"" >> /root/.bashrc
 
 # Install NodeJS 17
-RUN (curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - ) ; echo "Successx"
-RUN apt install -y nodejs npm
+RUN ( curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - ) ; echo "Successx"
+RUN apt update
+RUN apt remove -y nodejs-legacy
+RUN apt install -y nodejs
 
 # Open port 2222 for SSH access
 EXPOSE 80 443 2222 3000 3333 8001 8080 4200
