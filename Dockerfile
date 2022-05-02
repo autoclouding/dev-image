@@ -5,6 +5,7 @@ RUN apt update
 RUN apt install -y openssh-server
 RUN apt install -y supervisor
 RUN apt install -y apt-transport-https
+RUN apt install -y software-properties-common
 
 # Copy the sshd_config file to the /etc/ssh/ directory
 COPY ./ssh/sshd_config /etc/ssh/
@@ -42,6 +43,12 @@ RUN ( curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - ) ; echo
 RUN apt update
 RUN apt remove -y nodejs-legacy
 RUN apt install -y nodejs rsyslog
+
+# Install terraform
+RUN ( curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add - )
+RUN yes | apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+RUN apt update
+RUN apt install -y terraform
 
 # Open port 2222 for SSH access
 EXPOSE 80 443 2222 3000 3333 8001 8080 4200
