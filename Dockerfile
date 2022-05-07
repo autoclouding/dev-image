@@ -55,7 +55,7 @@ RUN go install github.com/swaggo/swag/cmd/swag@v1.7.9
 RUN go install github.com/rogpeppe/godef@latest
 RUN go install golang.org/x/tools/cmd/goimports@latest
 RUN go install github.com/stamblerre/gocode@latest
-RUN go install github.com/codegangsta/gin
+RUN go install github.com/codegangsta/gin@latest
 
 # RUN wget https://github.com/swaggo/swag/releases/download/v1.7.9/swag_1.7.9_Linux_x86_64.tar.gz -O /tmp/swag.tar.gz
 # RUN ( cd /tmp ; tar xzvf swag.tar.gz ; mv swag /bin )
