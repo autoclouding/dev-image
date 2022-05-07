@@ -50,8 +50,12 @@ RUN yes | apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.co
 RUN apt update
 RUN apt install -y terraform
 
-RUN wget https://github.com/swaggo/swag/releases/download/v1.8.1/swag_1.8.1_Linux_x86_64.tar.gz -O /tmp/swag.tar.gz
-RUN ( cd /tmp ; tar xzvf swag.tar.gz ; mv swag /bin )
+ENV PATH="/root/go/bin:${PATH}"
+RUN go install github.com/swaggo/swag/cmd/swag@v1.7.9
+
+
+# RUN wget https://github.com/swaggo/swag/releases/download/v1.7.9/swag_1.7.9_Linux_x86_64.tar.gz -O /tmp/swag.tar.gz
+# RUN ( cd /tmp ; tar xzvf swag.tar.gz ; mv swag /bin )
 
 # Open port 2222 for SSH access
 EXPOSE 80 443 2222 3000 3333 8001 8080 4200
