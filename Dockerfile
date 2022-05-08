@@ -36,7 +36,7 @@ RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUS
 # RUN apt install -y dotnet-sdk-6.0
 RUN wget -O /tmp/dotnet.tar.gz "https://download.visualstudio.microsoft.com/download/pr/c505a449-9ecf-4352-8629-56216f521616/bd6807340faae05b61de340c8bf161e8/dotnet-sdk-6.0.201-linux-x64.tar.gz"
 RUN (mkdir dotnet && cd dotnet && tar xzvf /tmp/dotnet.tar.gz && cd .. && mv dotnet /usr/share && rm -rf /tmp/dotnet.tar.gz)
-RUN echo "export PATH=\"$PATH:/usr/share/dotnet\"" >> /root/.bashrc
+RUN echo "export PATH=\"$PATH:/usr/share/dotnet:/root/go/bin\"" >> /root/.bashrc
 
 # Install NodeJS 17
 RUN ( curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - ) ; echo "Successx"
@@ -56,6 +56,7 @@ RUN go install github.com/rogpeppe/godef@latest
 RUN go install golang.org/x/tools/cmd/goimports@latest
 RUN go install github.com/stamblerre/gocode@latest
 RUN go install github.com/codegangsta/gin@latest
+RUN go install github.com/ramya-rao-a/go-outline@latest
 
 # RUN wget https://github.com/swaggo/swag/releases/download/v1.7.9/swag_1.7.9_Linux_x86_64.tar.gz -O /tmp/swag.tar.gz
 # RUN ( cd /tmp ; tar xzvf swag.tar.gz ; mv swag /bin )
